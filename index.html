@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <title>Dungeon Flashcard</title>
+  <link rel="stylesheet" href="scriptfor.css"
+  rel="stylesheet" />
   <script src="https://kit.fontawesome.com/e616ec6e3d.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -16,8 +18,12 @@
     <div id="home">
         <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
         <br><br>
+    
+    <div  class="moving-background">
+        <div id="home" >
+        <button class="btnsOnHome" id="startDungeonBtn" onclick="startDungeonFunc()">Start Dungeon</button>
         <button class="btnsOnHome" id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
-    </div>
+        </div>
 
     <div id="createDeck" style="display: none;">
         <h3>Add deck</h3>
@@ -43,7 +49,7 @@
 
             <button type="submit">Add</button>
             <br>
-            <button id="homeBtn" onclick="homeFunc()">Home</button>
+            <button class= "homeButton" id="homeBtn" onclick="homeFunc()">Home</button>
             
         </form>
     </div>
@@ -100,7 +106,7 @@
 
     </div>
 
-
+</div>
 
   <script src="dungeon.js"></script>
 </body>

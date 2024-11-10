@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+body {
+    background-color: black;
+    color: #8a2be2;
+    text-align: center;
+    font-family: 'Pixelify Sans', sans-serif;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.5s ease; /* for colour transition */
+    background-image: url('https://i.imgur.com/bx0rjey.png')
+}
+    
+    .btnsOnHome {
+      color: rgb(37, 27, 27);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      font-family: 'Pixelify Sans', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s ease;
+      display: block;
+      width: 100%;
+      
+    }
+  
+
+ 
+
+  .btnsOnHome:hover {
+    background-color: aqua;
+    border-color: black;
+  }
+
+  .btn:active {
+    background-color: red;
+  }
+
+  btn-primary {
+    background-color: rgb(0, 255, 60);
+  }
+
+  @keyframes moveBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
+  }
+  
+  /* Apply the animation to the background */
+  .moving-background {
+    width: 100%;
+    height: 100vh; /* full viewport height */
+    background-image: url('https://i.imgur.com/bx0rjey.png-https://i.imgur.com/bx0rjey.png.jpg'); /* replace with your image */
+    background-size: cover; /* or 'contain' depending on your design */
+    background-repeat: repeat-x; /* repeat horizontally */
+    animation: moveBackground 10s linear infinite; /* speed and direction */
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2em;
+      position: relative; /* Ensures child elements stay on top */
+      z-index: 1; /* Keeps content above background */
+      overflow: hidden;
+      filter: brightness(1.5); 
+  }
+
+.homeButton{
+  
+
+}
+
+
+
+  
