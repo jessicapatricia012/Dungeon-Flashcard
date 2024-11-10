@@ -8,6 +8,10 @@ var questionsArray = [];
 var currentDeckIndex = null;
 var deckSelectionBtns = document.getElementById("deckSelectionBtns");
 
+var enemy = document.getElementById("enemy")
+
+var myCoins = 0;
+
 // Retrieve stored data from localStorage (if any)
 if (localStorage.getItem("deckArray")) {
     deckArray = JSON.parse(localStorage.getItem("deckArray"));
@@ -36,39 +40,7 @@ function addDeck(){
     localStorage.setItem("deckArray", JSON.stringify(deckArray));
 }
 
-// Function to render the list of created decks
-function renderDeckList() {
-    // Clear previous list
-    deckSelectionBtns.innerHTML = ""; // Clear any previous entries
 
-    // Loop through the deckArray and create a button for each deck
-    deckArray.forEach((deck, index) => {
-        var button = document.createElement("button");
-        button.textContent = deck.deckName;
-        button.onclick = () => selectDeck(index); // Select deck on click
-        deckSelectionBtns.appendChild(button);
-    });
-}
-
-// Function to handle selecting a deck
-function selectDeck(index) {
-    currentDeckIndex = index;
-    addQuestions.style.display = "none";
-    chooseDeck.style.display = "none";
-    dungeon.style.display="block";
-    renderDeckList();
-}
-
-// Function to handle starting the selected deck
-function startSelectedDeck() {
-    if (currentDeckIndex !== null) {
-        console.log("Starting Deck:", deckArray[currentDeckIndex]);
-        addQuestions.style.display = "block"; // Show add questions form for selected deck
-        chooseDeck.style.display = "none"; // Hide deck selection
-    } else {
-        alert("Please select a deck to start.");
-    }
-}
 
 
 addQuestions.addEventListener('submit',(e)=>{
@@ -105,4 +77,57 @@ function startDungeonFunc(){
     chooseDeck.style.display="block";
     renderDeckList();
 
+}
+
+// Function to render the list of created decks
+function renderDeckList() {
+    // Clear previous list
+    deckSelectionBtns.innerHTML = ""; // Clear any previous entries
+
+    // Loop through the deckArray and create a button for each deck
+    deckArray.forEach((deck, index) => {
+        var button = document.createElement("button");
+        button.textContent = deck.deckName;
+        button.onclick = () => selectDeck(index); // Select deck on click
+        deckSelectionBtns.appendChild(button);
+    });
+}
+
+// Function to handle selecting a deck
+function selectDeck(index) {
+    currentDeckIndex = index;
+    addQuestions.style.display = "none";
+    chooseDeck.style.display = "none";
+    dungeon.style.display="block";
+
+    showEnemy();
+}
+
+// Function to handle starting the selected deck
+function startSelectedDeck() {
+    if (currentDeckIndex !== null) {
+        console.log("Starting Deck:", deckArray[currentDeckIndex]);
+        addQuestions.style.display = "block"; // Show add questions form for selected deck
+        chooseDeck.style.display = "none"; // Hide deck selection
+    } else {
+        alert("Please select a deck to start.");
+    }
+}
+
+
+function displayRandomQuestion() {
+    if (currentDeckIndex !== null && deckArray[currentDeckIndex].questions.length > 0) {
+        // Get a random index from the questions array
+        const randomIndex = Math.floor(Math.random() * deckArray[currentDeckIndex].questions.length);
+        const question = deckArray[currentDeckIndex].questions[randomIndex].question;
+        document.getElementById("dungeonQuestion").textContent = `Q: ${question}`;
+    } else {
+        document.getElementById("dungeonQuestion").textContent = "No questions available!";
+    }
+}
+
+function showEnemy() {
+    setTimeout(() => {
+        enemy.style.display = "inline-block"; // Show the second icon
+    }, 1000); // 5 seconds delay
 }

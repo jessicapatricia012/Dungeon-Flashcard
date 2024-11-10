@@ -5,8 +5,13 @@
   <script src="https://kit.fontawesome.com/e616ec6e3d.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div>
+        <img src="./Icons/coin.png" alt="Coin Icon" style="width: 24px; height: 24px;">
+        <span id="coinCount">0</span>
+    </div>
     <div id="home">
         <button class="btnsOnHome" id="startDungeonBtn" onclick="startDungeonFunc()">Start Dungeon</button>
+        <br><br>
         <button class="btnsOnHome" id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
     </div>
 
@@ -53,6 +58,24 @@
 
 
     <div id="dungeon" style="display: none">
+        <br><br><br><br>
+        <div id="myCharacter">
+            <h5>HP:</h5>
+            <i class="fa-solid fa-person fa-2xl"></i>
+        </div>
+        <br><br>
+        <div id="enemy" style="display: none">
+            <h5>HP:</h5>
+            <i class="fa-solid fa-person fa-2xl" onclick="displayRandomQuestion()"></i>
+        </div>
+        <br><br><br><br>
+
+        <div id="dungeonQuestion">
+            
+        </div>
+
+
+        <br><br><br><br>
         <button onclick="homeFunc()">Home</button>
 
 
