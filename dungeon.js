@@ -1,13 +1,18 @@
 var createDeck = document.getElementById("createDeck");
 var addQuestions = document.getElementById("addQuestions");
 var home = document.getElementById("home")
-var dungeon =document.getElementById("Dungeon")
+var dungeon =document.getElementById("dungeon")
 var chooseDeck = document.getElementById("chooseDeck")
 var deckArray = [];
 var questionsArray = [];
 var currentDeckIndex = null;
 var deckSelectionBtns = document.getElementById("deckSelectionBtns");
 
+// Retrieve stored data from localStorage (if any)
+if (localStorage.getItem("deckArray")) {
+    deckArray = JSON.parse(localStorage.getItem("deckArray"));
+    //renderDeckList(); // Render the saved deck list when the page loads
+}
 
 createDeck.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -27,6 +32,8 @@ function addDeck(){
     var deckName = document.getElementById("deckName").value;
     deckArray.push({ deckName: deckName, questions: [] });
     currentDeckIndex = deckArray.length - 1;
+
+    localStorage.setItem("deckArray", JSON.stringify(deckArray));
 }
 
 // Function to render the list of created decks
@@ -48,6 +55,7 @@ function selectDeck(index) {
     currentDeckIndex = index;
     addQuestions.style.display = "none";
     chooseDeck.style.display = "none";
+    dungeon.style.display="block";
     renderDeckList();
 }
 
@@ -80,6 +88,8 @@ function addQuestionsFunc(){
         deckArray[currentDeckIndex].questions.push({ question: question, answer: answer });
     }
 
+    localStorage.setItem("deckArray", JSON.stringify(deckArray));
+
     console.log("Questions Array:", deckArray);
 }
 
@@ -87,6 +97,7 @@ function homeFunc(){
     addQuestions.style.display="none";
     home.style.display="block";
     chooseDeck.style.display="none";
+    dungeon.style.display="none";
 }
 
 function startDungeonFunc(){
