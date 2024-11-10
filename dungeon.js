@@ -3,6 +3,9 @@ var addQuestions = document.getElementById("addQuestions");
 var home = document.getElementById("home")
 var dungeon =document.getElementById("dungeon")
 var chooseDeck = document.getElementById("chooseDeck")
+var questionToAnswer = document.getElementById("questionToAnswer")
+var dungeonQuestion = document.getElementById("dungeonQuestion")
+
 var deckArray = [];
 var questionsArray = [];
 var currentDeckIndex = null;
@@ -72,7 +75,7 @@ function homeFunc(){
     dungeon.style.display="none";
 }
 
-function startDungeonFunc(){
+function startSelectDeckFunc(){
     home.style.display="none";
     chooseDeck.style.display="block";
     renderDeckList();
@@ -100,7 +103,8 @@ function selectDeck(index) {
     chooseDeck.style.display = "none";
     dungeon.style.display="block";
 
-    showEnemy();
+    startDungeon();
+    
 }
 
 // Function to handle starting the selected deck
@@ -114,15 +118,24 @@ function startSelectedDeck() {
     }
 }
 
+function startDungeon(){
+    showEnemy();
+    
+}
+
 
 function displayRandomQuestion() {
     if (currentDeckIndex !== null && deckArray[currentDeckIndex].questions.length > 0) {
         // Get a random index from the questions array
         const randomIndex = Math.floor(Math.random() * deckArray[currentDeckIndex].questions.length);
         const question = deckArray[currentDeckIndex].questions[randomIndex].question;
-        document.getElementById("dungeonQuestion").textContent = `Q: ${question}`;
+        
+        // Set the question in the span with id "questionToAnswer"
+        questionToAnswer.textContent = `Q: ${question}`;
+        document.getElementById("dungeonQuestion").style.display = "block"; // Show the question div
     } else {
-        document.getElementById("dungeonQuestion").textContent = "No questions available!";
+        questionToAnswer.textContent = "No questions available!";
+        document.getElementById("dungeonQuestion").style.display = "block"; // Show the question div
     }
 }
 
@@ -130,4 +143,9 @@ function showEnemy() {
     setTimeout(() => {
         enemy.style.display = "inline-block"; // Show the second icon
     }, 1000); // 5 seconds delay
+
+    setTimeout(() => {
+        dungeonQuestion.style.display = "inline-block"; // Show the second icon
+    }, 3000); // 5 seconds delay
 }
+

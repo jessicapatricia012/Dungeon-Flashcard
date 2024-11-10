@@ -10,7 +10,7 @@
         <span id="coinCount">0</span>
     </div>
     <div id="home">
-        <button class="btnsOnHome" id="startDungeonBtn" onclick="startDungeonFunc()">Start Dungeon</button>
+        <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
         <br><br>
         <button class="btnsOnHome" id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
     </div>
@@ -58,7 +58,16 @@
 
 
     <div id="dungeon" style="display: none">
+
         <br><br><br><br>
+
+        <div id="dungeonQuestion" style="display: none">
+            <h5>q: </h5>
+            <span id="questionToAnswer"></span>
+        </div>
+
+        <br><br><br><br>
+
         <div id="myCharacter">
             <h5>HP:</h5>
             <i class="fa-solid fa-person fa-2xl"></i>
@@ -70,9 +79,7 @@
         </div>
         <br><br><br><br>
 
-        <div id="dungeonQuestion">
-            
-        </div>
+        
 
 
         <br><br><br><br>
