@@ -5,10 +5,14 @@
   <script src="https://kit.fontawesome.com/e616ec6e3d.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    
     <div>
         <img src="./Icons/coin.png" alt="Coin Icon" style="width: 24px; height: 24px;">
-        <span id="coinCount">0</span>
+        <span id="myCoinSpan"></span>
     </div>
+
+
     <div id="home">
         <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
         <br><br>
@@ -62,20 +66,28 @@
         <br><br><br><br>
 
         <div id="dungeonQuestion" style="display: none">
-            <h5>q: </h5>
             <span id="questionToAnswer"></span>
+        </div>
+
+        <div id="dungeonAnswer" style="display: none">
+            <form>
+                <input type=text id="yourAnswer" name="yourAnswer" required>
+                <button type="button" onclick="checkCorrectness()">Submit answer</button>
+            </form>
         </div>
 
         <br><br><br><br>
 
         <div id="myCharacter">
-            <h5>HP:</h5>
+            <h5>HP:<span id="myHPSpan"></span></h5>
             <i class="fa-solid fa-person fa-2xl"></i>
         </div>
+
         <br><br>
+
         <div id="enemy" style="display: none">
-            <h5>HP:</h5>
-            <i class="fa-solid fa-person fa-2xl" onclick="displayRandomQuestion()"></i>
+            <h5>HP:<span id="enemyHPSpan"></span></h5>
+            <i class="fa-solid fa-person fa-2xl"></i>
         </div>
         <br><br><br><br>
 

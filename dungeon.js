@@ -5,21 +5,44 @@ var dungeon =document.getElementById("dungeon")
 var chooseDeck = document.getElementById("chooseDeck")
 var questionToAnswer = document.getElementById("questionToAnswer")
 var dungeonQuestion = document.getElementById("dungeonQuestion")
+var dungeonAnswer = document.getElementById("dungeonAnswer")
+var yourAnswer = document.getElementById("yourAnswer")
+var submitAnswerBtn = document.getElementById("submitAnswerBtn")
+var myCoinSpan = document.getElementById("myCoinSpan")
 
 var deckArray = [];
 var questionsArray = [];
 var currentDeckIndex = null;
 var deckSelectionBtns = document.getElementById("deckSelectionBtns");
+var randomIndex;
+var shownQuestions = [];
 
 var enemy = document.getElementById("enemy")
 
 var myCoins = 0;
+
+var myHPSpan = document.getElementById("myHPSpan")
+var enemyHPSpan = document.getElementById("enemyHPSpan")
+var enemyHP = 100;
+var myHP = 100;
+
 
 // Retrieve stored data from localStorage (if any)
 if (localStorage.getItem("deckArray")) {
     deckArray = JSON.parse(localStorage.getItem("deckArray"));
     //renderDeckList(); // Render the saved deck list when the page loads
 }
+
+if (localStorage.getItem("myCoins")) {
+    myCoins = parseInt(localStorage.getItem("myCoins"));
+    myCoinSpan.textContent = myCoins;  // Display saved coins
+} else {
+    myCoins = 0;  // Default to 0 if no coins are stored
+}
+
+myCoinSpan.textContent= myCoins;
+myHPSpan.textContent = myHP;
+enemyHPSpan.textContent = enemyHP;
 
 createDeck.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -127,11 +150,23 @@ function startDungeon(){
 function displayRandomQuestion() {
     if (currentDeckIndex !== null && deckArray[currentDeckIndex].questions.length > 0) {
         // Get a random index from the questions array
-        const randomIndex = Math.floor(Math.random() * deckArray[currentDeckIndex].questions.length);
+        do {
+            randomIndex = Math.floor(Math.random() * deckArray[currentDeckIndex].questions.length);
+        } while (shownQuestions.includes(randomIndex));  // Ensure the question hasn't been displayed already
+
+        // Add the randomIndex to the shownQuestions array to prevent it from being displayed again
+        shownQuestions.push(randomIndex);
+
+        // If all questions have been shown, reset shownQuestions to allow repeating questions
+        if (shownQuestions.length === deckArray[currentDeckIndex].questions.length) {
+            shownQuestions = [];
+        }
+
+
         const question = deckArray[currentDeckIndex].questions[randomIndex].question;
         
         // Set the question in the span with id "questionToAnswer"
-        questionToAnswer.textContent = `Q: ${question}`;
+        questionToAnswer.textContent = question;
         document.getElementById("dungeonQuestion").style.display = "block"; // Show the question div
     } else {
         questionToAnswer.textContent = "No questions available!";
@@ -142,10 +177,60 @@ function displayRandomQuestion() {
 function showEnemy() {
     setTimeout(() => {
         enemy.style.display = "inline-block"; // Show the second icon
-    }, 1000); // 5 seconds delay
+    }, 500); // 1 seconds delay
 
     setTimeout(() => {
         dungeonQuestion.style.display = "inline-block"; // Show the second icon
-    }, 3000); // 5 seconds delay
+        displayRandomQuestion();
+    }, 1000); // 3 seconds delay
+
+    setTimeout(() => {
+        dungeonAnswer.style.display = "inline-block"; // Show the second icon
+    }, 1500); // 5 seconds delay
 }
+
+function checkCorrectness(){
+    var correctAnswer = deckArray[currentDeckIndex].questions[randomIndex].answer;
+
+    if (yourAnswer.value.toLowerCase() == correctAnswer.toLowerCase()) {
+        updateCorrectAnswer();
+        displayRandomQuestion();
+     } else {
+        updateWrongAnswer();
+        alert("Incorrect! The correct answer was: " + correctAnswer);
+    }
+
+}
+
+function updateCorrectAnswer(){
+    enemyHP-=30;
+    if(enemyHP <= 0) {
+        enemyHP = 0;
+        enemyHPSpan.textContent = enemyHP;
+        enemyDies();
+    } else {
+        enemyHPSpan.textContent = enemyHP;
+    }
+   
+}
+
+function enemyDies(){
+    enemy.style.display = "none";
+    updateCoins(20);
+}
+
+function updateWrongAnswer(){
+    myHP-=30;
+    myHPSpan.textContent = myHP;
+}
+
+
+function updateCoins(val){
+    myCoins += val;
+    localStorage.setItem("myCoins", myCoins);
+    myCoinSpan.textContent = myCoins;
+}
+
+
+
 
