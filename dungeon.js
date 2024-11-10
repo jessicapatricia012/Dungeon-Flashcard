@@ -67,8 +67,6 @@ function addDeck(){
 }
 
 
-
-
 addQuestions.addEventListener('submit',(e)=>{
     e.preventDefault();
 
@@ -102,7 +100,6 @@ function startSelectDeckFunc(){
     home.style.display="none";
     chooseDeck.style.display="block";
     renderDeckList();
-
 }
 
 // Function to render the list of created decks
@@ -162,7 +159,6 @@ function displayRandomQuestion() {
             shownQuestions = [];
         }
 
-
         const question = deckArray[currentDeckIndex].questions[randomIndex].question;
         
         // Set the question in the span with id "questionToAnswer"
@@ -211,7 +207,6 @@ function updateCorrectAnswer(){
     } else {
         enemyHPSpan.textContent = enemyHP;
     }
-   
 }
 
 function enemyDies(){
