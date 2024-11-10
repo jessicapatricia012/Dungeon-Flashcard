@@ -54,7 +54,7 @@ body {
     }
   }
   
-  /* Apply the animation to the background */
+
   .moving-background {
     width: 100%;
     height: 100vh; /* full viewport height */
