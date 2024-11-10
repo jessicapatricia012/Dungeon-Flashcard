@@ -5,13 +5,9 @@
 </head>
 <body>
     <div id="home">
-        <button id="startDungeonBtn" onclick="startDungeon()">Start Dungeon</button>
-        <button id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
+        <button class="btnsOnHome" id="startDungeonBtn" onclick="startDungeonFunc()">Start Dungeon</button>
+        <button class="btnsOnHome" id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
     </div>
-
-
-
-
 
     <div id="createDeck" style="display: none;">
         <h3>Add deck</h3>
@@ -43,13 +39,20 @@
     </div>
 
 
+    <div id="chooseDeck" style="display: none;">
+        <div id="deckSelectionBtns">
+            <!-- Buttons for deck selection will be dynamically added here -->
+        </div>
+        <button onclick="homeFunc()">Home</button>
+        <br><br>
+        
+
+    </div>
+
+    <div id="dungeon">
 
 
-
-
-
-
-
+    </div>
 
 
 
