@@ -8,7 +8,7 @@
 </head>
 <body>
  
-    <div>
+    <div class = "coin">
         <img src="./Icons/coin.png" alt="Coin Icon" style="width: 24px; height: 24px;">
         <span id="myCoinSpan"></span>
     </div>
@@ -18,7 +18,7 @@
         <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
         <br><br> -->
     
-<div  class="moving-background">
+<div class="moving-background">
         <div id="home" >
         <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
         <button class="btnsOnHome" id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
@@ -58,7 +58,7 @@
         <div id="deckSelectionBtns">
             <!-- Buttons for deck selection will be dynamically added here -->
         </div>
-        <button onclick="homeFunc()">Home</button>
+        <button class = "homeButton" onclick="homeFunc()">Home</button>
         <br><br>
         
 
@@ -83,14 +83,14 @@
 
         <br><br><br><br>
 
-        <div id="myCharacter">
+        <div class = "character" id="myCharacter">
             <h5>HP:<span id="myHPSpan"></span></h5>
             <img src="./Icons/myChar.png" alt=" My Character Icon" style="height: 100px;">
             
         </div>
 
 
-        <div id="enemy" style="display: none">
+        <div class = "enemy" id="enemy" style="display: none">
             <h5>HP:<span id="enemyHPSpan"></span></h5>
             <img src="./Icons/enemyIcon.png" alt=" Enemy Icon" style="height: 120px">
         </div>
