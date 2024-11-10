@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dungeon Flashcard</title>
+</head>
+<body>
+    <div id="home">
+        <button id="startDungeonBtn" onclick="startDungeon()">Start Dungeon</button>
+        <button id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
+    </div>
+
+
+
+
+
+    <div id="createDeck" style="display: none;">
+        <h3>Add deck</h3>
+
+        <form id="createDeckForm">
+            <label for="deckName">Deck name: </label>
+            <input type=text id="deckName" name="deckname" required>
+
+            <button type="submit">Create</button>
+            
+        </form>
+    </div>
+
+    <div id="addQuestions" style="display: none;">
+        <h3>Add questions </h3>
+
+        <form id="addQuestionsForm">
+            <label for="question">Q: </label>
+            <input type=text id="questions" name="question">
+
+            <label for="answer">A: </label>
+            <input type=text id="answer" name="answer">
+
+            <button type="submit">Add</button>
+            <br>
+            <button id="homeBtn" onclick="homeFunc()">Home</button>
+            
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="dungeon.js"></script>
+</body>
+</html>
