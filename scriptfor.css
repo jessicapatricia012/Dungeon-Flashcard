@@ -126,3 +126,25 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+.addDeck {
+  color: #f53113;
+  background-color: transparent;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 30px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 4;
+  position: relative; 
+  align-items: center;
+}
+
+#enemyMinusHP {
+  color: #f53113;
+  position: fixed; 
+  right: 420px; 
+  z-index: 4 
+}
