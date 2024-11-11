@@ -14,15 +14,12 @@
     </div>
 
 
-    <!-- <div id="home">
-        <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
-        <br><br> -->
     
-<div  class="moving-background">
-        <div id="home" >
+<div class="moving-background">
+    <div id="home" >
         <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
-        <button class="btnsOnHome" id="createDeckBtn" onclick="createDeckFunc()">Create Deck</button>
-        </div>
+        <button class="btnsOnHome" id="myDeckBtn" onclick="viewMyDeckFunc()">My Decks</button>
+    </div>
         
     <div id="createDeck" style="display: none;">
         <h3>Add deck</h3>
@@ -46,7 +43,7 @@
             <label for="answer">A: </label>
             <input type=text id="answer" name="answer">
 
-            <button type="submit">Add</button>
+            <button type="submit" >Add</button>
             <br>
             <button class= "homeButton" id="homeBtn" onclick="homeFunc()">Home</button>
             
@@ -55,9 +52,10 @@
 
 
     <div id="chooseDeck" style="display: none;">
-        <div id="deckSelectionBtns">
+        <div id="deckSelections">
             <!-- Buttons for deck selection will be dynamically added here -->
         </div>
+        <button id="addDeckBtn" onclick="createDeckFunc()" style="display: none">Add Deck</button>
         <button onclick="homeFunc()">Home</button>
         <br><br>
         
@@ -65,28 +63,38 @@
     </div>
     
 
-
     <div id="dungeon" style="display: none">
 
         <br><br><br><br>
+        <div id="dungeonQADiv">
+            <div id="dungeonQuestion" style="display: none">
+                <span id="questionToAnswer"></span>
+            </div>
 
-        <div id="dungeonQuestion" style="display: none">
-            <span id="questionToAnswer"></span>
+            <div id="dungeonAnswer" style="display: none">
+                <form>
+                    <input type=text id="yourAnswer" name="yourAnswer" required>
+                    <button type="button" onclick="checkCorrectness()">Submit answer</button>
+                </form>
+            </div> 
         </div>
 
-        <div id="dungeonAnswer" style="display: none">
-            <form>
-                <input type=text id="yourAnswer" name="yourAnswer" required>
-                <button type="button" onclick="checkCorrectness()">Submit answer</button>
-            </form>
+        <div id="loseDiv" style="display: none">
+            <h3>Study more!</h3>
         </div>
+
+        <div id="winDiv" style="display: none">
+            <h3>Congratulation! You have cleared the dungeon.</h3>
+            <h4>(this doesn't mean you don't need further review)</h4>
+        </div>
+
+ 
 
         <br><br><br><br>
 
         <div id="myCharacter">
             <h5>HP:<span id="myHPSpan"></span></h5>
             <img src="./Icons/myChar.png" alt=" My Character Icon" style="height: 100px;">
-            
         </div>
 
 

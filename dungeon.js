@@ -1,5 +1,6 @@
 var createDeck = document.getElementById("createDeck");
 var addQuestions = document.getElementById("addQuestions");
+var addQuestionsForm = document.getElementById("addQuestionsForm");
 var home = document.getElementById("home")
 var dungeon =document.getElementById("dungeon")
 var chooseDeck = document.getElementById("chooseDeck")
@@ -9,11 +10,14 @@ var dungeonAnswer = document.getElementById("dungeonAnswer")
 var yourAnswer = document.getElementById("yourAnswer")
 var submitAnswerBtn = document.getElementById("submitAnswerBtn")
 var myCoinSpan = document.getElementById("myCoinSpan")
+var addDeckBtn = document.getElementById("addDeckBtn")
+var myDeckBtn = document.getElementById("addDeckBtn")
+var clearedDungeonAddCoins  = document.getElementById("clearedDungeonAddCoins")
 
 var deckArray = [];
 var questionsArray = [];
 var currentDeckIndex = null;
-var deckSelectionBtns = document.getElementById("deckSelectionBtns");
+var deckSelections = document.getElementById("deckSelections");
 var randomIndex;
 var shownQuestions = [];
 
@@ -44,18 +48,28 @@ myCoinSpan.textContent= myCoins;
 myHPSpan.textContent = myHP;
 enemyHPSpan.textContent = enemyHP;
 
+
+function clearAllDiv(){
+    home.style.display="none";
+    createDeck.style.display="none";
+    addQuestions.style.display="none";
+    chooseDeck.style.display="none";
+    dungeon.style.display="none";
+}
+
 createDeck.addEventListener('submit',(e)=>{
     e.preventDefault();
-
+    clearAllDiv();
     addDeck();
-    createDeck.style.display="none";
+    
     addQuestions.style.display="block";
-    renderDeckList(); // Render the updated deck list
+    renderDeckList(false); // Render the updated deck list
 })
 
 function createDeckFunc(){
-    createDeck.style.display="block"
-    home.style.display="none"
+    console.log("createDeckFunc triggered");
+    clearAllDiv();
+    createDeck.style.display="block";
 }
 
 function addDeck(){
@@ -90,30 +104,71 @@ function addQuestionsFunc(){
 }
 
 function homeFunc(){
-    addQuestions.style.display="none";
+    clearAllDiv();
     home.style.display="block";
-    chooseDeck.style.display="none";
-    dungeon.style.display="none";
+}
+
+function viewMyDeckFunc(){
+    clearAllDiv();
+    chooseDeck.style.display="block";
+    
+    renderDeckList(false);
 }
 
 function startSelectDeckFunc(){
-    home.style.display="none";
+    clearAllDiv();
     chooseDeck.style.display="block";
-    renderDeckList();
+    renderDeckList(true);
 }
 
 // Function to render the list of created decks
-function renderDeckList() {
+function renderDeckList(goDungeon) {
+    if(!goDungeon){
+        addDeckBtn.style.display="block";
+    } else {
+        addDeckBtn.style.display="none";
+
+    }
     // Clear previous list
-    deckSelectionBtns.innerHTML = ""; // Clear any previous entries
+    deckSelections.innerHTML = ""; // Clear any previous entries
 
     // Loop through the deckArray and create a button for each deck
     deckArray.forEach((deck, index) => {
-        var button = document.createElement("button");
-        button.textContent = deck.deckName;
-        button.onclick = () => selectDeck(index); // Select deck on click
-        deckSelectionBtns.appendChild(button);
+        var deckContainer = document.createElement("div");
+        deckContainer.className = "deck-container";
+        deckContainer.style.textAlign = "center"; // Center-align the text
+        deckContainer.style.display = "inline-block"; // Keep elements in-line
+        deckContainer.style.margin = "10px"; // Add spacing around each deck
+        if(goDungeon)
+            deckContainer.onclick = () => selectDeck(index);
+        else
+            deckContainer.onclick = () => viewDeck();
+
+        var bookImg = document.createElement("img");
+        bookImg.src = "./Icons/redBook.png";
+        bookImg.title = deck.deckName;
+        bookImg.className = "deck-image";
+        bookImg.style.cursor="pointer";
+        bookImg.style.width= "100px";
+        
+        var deckNameText = document.createElement("p");
+        deckNameText.className = "deck-name-text";
+        deckNameText.textContent = deck.deckName;
+        deckNameText.style.marginTop = "5px"; // Add some space above the text
+
+        // Append image and text to the container div
+        deckContainer.appendChild(bookImg);
+        deckContainer.appendChild(deckNameText);
+
+        // Append the container div to the main deck selection area
+        deckSelections.appendChild(deckContainer);
     });
+
+    
+}
+
+function viewDeck(){
+    
 }
 
 // Function to handle selecting a deck
@@ -143,33 +198,6 @@ function startDungeon(){
     
 }
 
-
-function displayRandomQuestion() {
-    if (currentDeckIndex !== null && deckArray[currentDeckIndex].questions.length > 0) {
-        // Get a random index from the questions array
-        do {
-            randomIndex = Math.floor(Math.random() * deckArray[currentDeckIndex].questions.length);
-        } while (shownQuestions.includes(randomIndex));  // Ensure the question hasn't been displayed already
-
-        // Add the randomIndex to the shownQuestions array to prevent it from being displayed again
-        shownQuestions.push(randomIndex);
-
-        // If all questions have been shown, reset shownQuestions to allow repeating questions
-        if (shownQuestions.length === deckArray[currentDeckIndex].questions.length) {
-            shownQuestions = [];
-        }
-
-        const question = deckArray[currentDeckIndex].questions[randomIndex].question;
-        
-        // Set the question in the span with id "questionToAnswer"
-        questionToAnswer.textContent = question;
-        document.getElementById("dungeonQuestion").style.display = "block"; // Show the question div
-    } else {
-        questionToAnswer.textContent = "No questions available!";
-        document.getElementById("dungeonQuestion").style.display = "block"; // Show the question div
-    }
-}
-
 function showEnemy() {
     setTimeout(() => {
         enemy.style.display = "inline-block"; // Show the second icon
@@ -185,20 +213,55 @@ function showEnemy() {
     }, 1500); // 5 seconds delay
 }
 
+function displayRandomQuestion() {
+    if (currentDeckIndex !== null && deckArray[currentDeckIndex].questions.length > 0) {
+        // Get a random index from the questions array
+        do {
+            randomIndex = Math.floor(Math.random() * deckArray[currentDeckIndex].questions.length);
+        } while (shownQuestions.includes(randomIndex));  // Ensure the question hasn't been displayed already
+
+        
+        // If all questions have been shown
+        
+
+        const question = deckArray[currentDeckIndex].questions[randomIndex].question;
+        
+        // Set the question in the span with id "questionToAnswer"
+        questionToAnswer.textContent = question;
+        document.getElementById("dungeonQuestion").style.display = "block"; // Show the question div
+    } else {
+        questionToAnswer.textContent = "You Cleared the Dungeon!";
+        document.getElementById("dungeonQuestion").style.display = "none"; // Show the question div
+    }
+}
+
 function checkCorrectness(){
     var correctAnswer = deckArray[currentDeckIndex].questions[randomIndex].answer;
 
     if (yourAnswer.value.toLowerCase() == correctAnswer.toLowerCase()) {
         updateCorrectAnswer();
-        displayRandomQuestion();
-     } else {
+        shownQuestions.push(randomIndex);// Add the randomIndex to the shownQuestions array to prevent it from being displayed again
+    } else {
         updateWrongAnswer();
-        alert("Incorrect! The correct answer was: " + correctAnswer);
     }
-
+    if (shownQuestions.length == deckArray[currentDeckIndex].questions.length) {
+            dungeonCleared();
+            return;
+    } else {
+        displayRandomQuestion();
+    }
 }
 
 function updateCorrectAnswer(){
+    //if one questions left
+    if (shownQuestions.length+1 == deckArray[currentDeckIndex].questions.length) {
+        enemyHP = 0;
+        enemyHPSpan.textContent = enemyHP;
+        //enemyDies();
+        dungeonCleared();
+        return;
+    }
+
     enemyHP-=30;
     if(enemyHP <= 0) {
         enemyHP = 0;
@@ -212,11 +275,33 @@ function updateCorrectAnswer(){
 function enemyDies(){
     enemy.style.display = "none";
     updateCoins(20);
+
+    //have some questions left
+    if (shownQuestions.length != deckArray[currentDeckIndex].questions.length) {
+        setTimeout(() => {
+            enemy.style.display = "inline-block"; // Show next enemy
+            enemyHP = 100;
+            enemyHPSpan.textContent = enemyHP;
+        }, 1000); // 1 second delay
+    }
 }
 
 function updateWrongAnswer(){
     myHP-=30;
-    myHPSpan.textContent = myHP;
+    if(myHP <= 0) {
+        myHP = 0;
+        myHPSpan.textContent = myHP;
+        weDie();
+    } else {
+        myHPSpan.textContent = myHP;
+    }
+
+}
+
+function weDie(){
+    myCharacter.style.display = "none";
+    shownQuestions = [];
+    document.getElementById("loseDiv").style.display="block";
 }
 
 
@@ -224,6 +309,12 @@ function updateCoins(val){
     myCoins += val;
     localStorage.setItem("myCoins", myCoins);
     myCoinSpan.textContent = myCoins;
+}
+
+function dungeonCleared(){
+    enemy.style.display = "none";
+    document.getElementById("winDiv").style.display="block";
+    document.getElementById("dungeonQADiv").style.display="none";
 }
 
 
