@@ -13,6 +13,8 @@ var myCoinSpan = document.getElementById("myCoinSpan")
 var addDeckBtn = document.getElementById("addDeckBtn")
 var myDeckBtn = document.getElementById("addDeckBtn")
 var clearedDungeonAddCoins  = document.getElementById("clearedDungeonAddCoins")
+var enemyMinusHP  = document.getElementById("enemyMinusHP")
+
 
 var deckArray = [];
 var questionsArray = [];
@@ -255,12 +257,23 @@ function checkCorrectness(){
 function updateCorrectAnswer(){
     //if one questions left
     if (shownQuestions.length+1 == deckArray[currentDeckIndex].questions.length) {
+        enemyMinusHP.textContent= "-" + String(enemyHP);
+        enemyMinusHP.style.display="block";
+        setTimeout(() => {
+            enemyMinusHP.style.display = "none";
+        }, 1500); // 1 second delay
         enemyHP = 0;
         enemyHPSpan.textContent = enemyHP;
         //enemyDies();
         dungeonCleared();
         return;
     }
+
+    enemyMinusHP.textContent= "-30";
+    enemyMinusHP.style.display="block";
+    setTimeout(() => {
+        enemyMinusHP.style.display = "none";
+    }, 1500); // 1 second delay
 
     enemyHP-=30;
     if(enemyHP <= 0) {
