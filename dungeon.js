@@ -274,7 +274,7 @@ function updateCorrectAnswer(){
 
 function enemyDies(){
     enemy.style.display = "none";
-    updateCoins(20);
+    
 
     //have some questions left
     if (shownQuestions.length != deckArray[currentDeckIndex].questions.length) {
@@ -312,6 +312,7 @@ function updateCoins(val){
 }
 
 function dungeonCleared(){
+    updateCoins(20);
     enemy.style.display = "none";
     document.getElementById("winDiv").style.display="block";
     document.getElementById("dungeonQADiv").style.display="none";
