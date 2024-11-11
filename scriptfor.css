@@ -146,5 +146,41 @@ body {
   color: #f53113;
   position: fixed; 
   right: 420px; 
-  z-index: 4 
+  z-index: 4 ;
+}
+
+#myCharMinusHP {
+  color: #f53113;
+  position: fixed; 
+  left: 220px; 
+  z-index: 4;
+}
+
+#viewChosenDeck 
+{
+  position: relative;
+  width: 70%;                 /* Set width to 70% of the page */
+  height: 400px;              /* Set height as needed */
+  margin: 0 auto;             /* Center horizontally */
+  background-image: url('Icons/newimage.png'); /* Replace with your image URL */
+  background-size: cover;     /* Cover the container */
+  background-position: center;
+  display: flex;              /* Enable flex layout */
+  align-items: center;        /* Center vertically */
+  justify-content: space-between; /* Left and right alignment for columns */
+  color: white;               /* Text color for readability */
+  border-radius: 10px;        /* Optional: rounded corners */
+  
+ 
+}
+
+#chosenDeck{
+  color: black;
+  text-align: center;
+}
+
+#questionsListPerDeck {      
+  text-align: center;
+  color: black;
+
 }
