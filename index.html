@@ -13,6 +13,8 @@
         <span id="myCoinSpan"></span>
     </div>
 
+    <h1>DUNGEON SCHOLAR</h1>
+
 
     
 <div  class="moving-background">
@@ -69,6 +71,8 @@
         <div id="questionsListPerDeck">
             <!-- question list for chosen deck -->
         </div>
+        
+
         <br><br>
         
     </div>
@@ -76,18 +80,22 @@
 
     <div id="dungeon" style="display: none">
 
-        <br>
-        <div id="dungeonQADiv">
-            <div id="dungeonQuestion" style="display: none">
-                <span id="questionToAnswer"></span>
+        <div id="dungeonQADiv" style="height: 200px; position: relative; width: 100%;"> <!-- Adjust height as needed -->
+            <!-- Question bubble -->
+            <div id="dungeonQuestion" style="display: none; position: relative; align-items: center; top: 0;">
+                <img src="./Icons/speech.png" style="height: 150px; width: 800px">
+                <span id="questionToAnswer" style="position: absolute; top: 15%; left: 15%; width: 70%; text-align: center;">
+                    <!-- Question text will go here -->
+                </span>
             </div>
-
-            <div id="dungeonAnswer" style="display: none">
-                <form>
-                    <input type=text id="yourAnswer" name="yourAnswer" required>
-                    <button type="button" onclick="checkCorrectness()">Submit answer</button>
+        
+            <!-- Answer bubble -->
+            <div id="dungeonAnswer" style="display: none; position: absolute; left: 10%; top: 60%; width: 200px; height: 150px; text-align: center;">
+                <form id="myAnswerForm">
+                    <input type="text" id="yourAnswer" name="yourAnswer" required style="width: 100%; border: none; background: transparent; color: black; text-align: center; font-size: 28px;" placeholder="Answer">
+                    <button id="submitMyAnswerBtn" type="button" onclick="checkCorrectness()">Submit answer</button>
                 </form>
-            </div> 
+            </div>
         </div>
 
         <div id="loseDiv" style="display: none">

@@ -51,7 +51,6 @@ myCoinSpan.textContent= myCoins;
 myHPSpan.textContent = myHP;
 enemyHPSpan.textContent = enemyHP;
 
-
 function clearAllDiv(){
     home.style.display="none";
     createDeck.style.display="none";
