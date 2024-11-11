@@ -8,15 +8,15 @@
 </head>
 <body>
  
-    <div>
+    <div class = "coin">
         <img src="./Icons/coin.png" alt="Coin Icon" style="width: 24px; height: 24px;">
         <span id="myCoinSpan"></span>
     </div>
 
 
     
-<div class="moving-background">
-    <div id="home" >
+<div  class="moving-background">
+        <div id="home" >
         <button class="btnsOnHome" id="startDungeonBtn" onclick="startSelectDeckFunc()">Start Dungeon</button>
         <button class="btnsOnHome" id="myDeckBtn" onclick="viewMyDeckFunc()">My Decks</button>
     </div>
@@ -28,7 +28,7 @@
             <label for="deckName">Deck name: </label>
             <input type=text id="deckName" name="deckname" required>
 
-            <button type="submit">Create</button>
+            <button class= "submit" type="submit">Create</button>
             
         </form>
     </div>
@@ -43,7 +43,7 @@
             <label for="answer">A: </label>
             <input type=text id="answer" name="answer">
 
-            <button type="submit" >Add</button>
+            <button class= "submit"  type="submit" >Add</button>
             <br>
             <button class= "homeButton" id="homeBtn" onclick="homeFunc()">Home</button>
             
@@ -56,7 +56,7 @@
             <!-- Buttons for deck selection will be dynamically added here -->
         </div>
         <button id="addDeckBtn" onclick="createDeckFunc()" style="display: none">Add Deck</button>
-        <button onclick="homeFunc()">Home</button>
+        <button class = "homeButton" onclick="homeFunc()">Home</button>
         <br><br>
         
 
@@ -92,25 +92,22 @@
 
         <br><br><br><br>
 
-        <div id="myCharacter">
+        <div class = "character" id="myCharacter">
             <h5>HP:<span id="myHPSpan"></span></h5>
             <img src="./Icons/myChar.png" alt=" My Character Icon" style="height: 100px;">
         </div>
 
-        
         <span id="enemyMinusHP" style="display: none"></span>
 
-        <div id="enemy" style="display: none">
+        <div class = "enemy" id="enemy" style="display: none">
             <h5>HP:<span id="enemyHPSpan"></span></h5>
             <img src="./Icons/enemyIcon.png" alt=" Enemy Icon" style="height: 120px">
         </div>
         <br><br><br><br>
 
-        
-
 
         <br><br><br><br>
-        <button onclick="homeFunc()">Home</button>
+        <button class = "homeButton" onclick="homeFunc()">Home</button>
 
 
     </div>

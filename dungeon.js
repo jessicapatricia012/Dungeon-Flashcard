@@ -166,7 +166,6 @@ function renderDeckList(goDungeon) {
         deckSelections.appendChild(deckContainer);
     });
 
-    
 }
 
 function viewDeck(){
@@ -269,7 +268,11 @@ function updateCorrectAnswer(){
         return;
     }
 
-    enemyMinusHP.textContent= "-30";
+    if (enemyHP-30<0){
+        enemyMinusHP.textContent= "-" + String(enemyHP);
+    } else {
+        enemyMinusHP.textContent= "-30";
+    }
     enemyMinusHP.style.display="block";
     setTimeout(() => {
         enemyMinusHP.style.display = "none";
@@ -330,7 +333,3 @@ function dungeonCleared(){
     document.getElementById("winDiv").style.display="block";
     document.getElementById("dungeonQADiv").style.display="none";
 }
-
-
-
-

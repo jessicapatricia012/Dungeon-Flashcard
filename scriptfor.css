@@ -5,10 +5,11 @@ body {
     color: #8a2be2;
     text-align: center;
     font-family: 'Pixelify Sans', sans-serif;
-    margin-left: 40px;
-    margin-right: 40px;
+     /* margin-left: 40px; 
+    margin-right: 40px; 
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; */ 
+    position: relative;
     transition: background-color 0.5s ease; /* for colour transition */
     background-image: url("./Icons/BackgroundDungeon.png");
 }
@@ -75,7 +76,53 @@ body {
   }
 
 
+.homeButton{
+  color: rgb(37, 27, 27);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+   top: 0;  
+  left: 0;
+}
 
+.coin {
+  position: absolute;
+  top: 0;  
+  right: 0;
+  z-index: 10;
+}
 
+.character {
+  position: fixed;  
+  left: 50px;            
+  bottom: 0;         
+  transform: translateX(0); 
+  margin-bottom: 20px;
 
-  
+}
+
+.enemy {
+  position: fixed;  
+  right: 50px;            
+  bottom: 0;         
+  transform: translateX(0); 
+  margin-bottom: 20px;
+
+}
+
+.submit {
+  color: rgb(47, 255, 95);
+  background-color: white;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
