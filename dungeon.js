@@ -14,6 +14,7 @@ var addDeckBtn = document.getElementById("addDeckBtn")
 var myDeckBtn = document.getElementById("addDeckBtn")
 var clearedDungeonAddCoins  = document.getElementById("clearedDungeonAddCoins")
 var enemyMinusHP  = document.getElementById("enemyMinusHP")
+var myCharMinusHP  = document.getElementById("myCharMinusHP")
 var viewChosenDeck  = document.getElementById("viewChosenDeck")
 
 var deckArray = [];
@@ -335,6 +336,17 @@ function enemyDies(){
 }
 
 function updateWrongAnswer(){
+    if (myHP-30<0){
+        myCharMinusHP.textContent= "-" + String(myHP);
+    } else {
+        myCharMinusHP.textContent= "-30";
+    }
+
+    myCharMinusHP.style.display="block";
+    setTimeout(() => {
+        myCharMinusHP.style.display = "none";
+    }, 1500); // 1 second delay
+
     myHP-=30;
     if(myHP <= 0) {
         myHP = 0;
@@ -350,6 +362,7 @@ function weDie(){
     myCharacter.style.display = "none";
     shownQuestions = [];
     document.getElementById("loseDiv").style.display="block";
+    dungeonQADiv.style.display="none";
 }
 
 
