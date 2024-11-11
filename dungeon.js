@@ -14,7 +14,7 @@ var addDeckBtn = document.getElementById("addDeckBtn")
 var myDeckBtn = document.getElementById("addDeckBtn")
 var clearedDungeonAddCoins  = document.getElementById("clearedDungeonAddCoins")
 var enemyMinusHP  = document.getElementById("enemyMinusHP")
-
+var viewChosenDeck  = document.getElementById("viewChosenDeck")
 
 var deckArray = [];
 var questionsArray = [];
@@ -57,6 +57,7 @@ function clearAllDiv(){
     addQuestions.style.display="none";
     chooseDeck.style.display="none";
     dungeon.style.display="none";
+    viewChosenDeck.style.display="none";    
 }
 
 createDeck.addEventListener('submit',(e)=>{
@@ -144,7 +145,7 @@ function renderDeckList(goDungeon) {
         if(goDungeon)
             deckContainer.onclick = () => selectDeck(index);
         else
-            deckContainer.onclick = () => viewDeck();
+            deckContainer.onclick = () => viewDeck(index);
 
         var bookImg = document.createElement("img");
         bookImg.src = "./Icons/redBook.png";
@@ -168,8 +169,40 @@ function renderDeckList(goDungeon) {
 
 }
 
-function viewDeck(){
-    
+function viewDeck(index){
+    clearAllDiv();
+    viewChosenDeck.style.display="block";
+    document.getElementById("chosenDeck").textContent=deckArray[index].deckName;
+    renderQuestionsForDeck(index);
+}
+
+function renderQuestionsForDeck(index) {
+    // Make sure index is set and valid
+    if (index !== null && deckArray[index]) {
+        const deck = deckArray[index]; // Get the current deck
+        const questionsList = deck.questions; // Get questions array for this deck
+        const questionsListContainer = document.getElementById("questionsListPerDeck");
+        
+        // Clear any previous content in the container
+        questionsListContainer.innerHTML = ""; 
+        
+        // Check if the deck has questions
+        if (questionsList.length > 0) {
+            // Loop through each question in the current deck and create a list item for each
+            questionsList.forEach((q, index) => {
+                const questionItem = document.createElement("div");
+                questionItem.classList.add("question-item"); // Optional: add class for styling
+                questionItem.innerHTML = `
+                    <strong>Question ${index + 1}:</strong> ${q.question}<br>
+                    <strong>Answer:</strong> ${q.answer}
+                `;
+                questionsListContainer.appendChild(questionItem); // Add question to container
+            });
+        } else {
+            // If there are no questions, display a message
+            questionsListContainer.innerHTML = "No questions available for this deck.";
+        }
+    }
 }
 
 // Function to handle selecting a deck
@@ -196,7 +229,6 @@ function startSelectedDeck() {
 
 function startDungeon(){
     showEnemy();
-    
 }
 
 function showEnemy() {

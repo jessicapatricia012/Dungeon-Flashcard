@@ -29,6 +29,7 @@
             <input type=text id="deckName" name="deckname" required>
 
             <button class= "submit" type="submit">Create</button>
+            <button class= "homeButton" id="homeBtn" onclick="homeFunc()">Home</button>
             
         </form>
     </div>
@@ -38,10 +39,10 @@
 
         <form id="addQuestionsForm">
             <label for="question">Q: </label>
-            <input type=text id="questions" name="question">
+            <input type=text id="questions" name="question" required>
 
             <label for="answer">A: </label>
-            <input type=text id="answer" name="answer">
+            <input type=text id="answer" name="answer" required>
 
             <button class= "submit"  type="submit" >Add</button>
             <br>
@@ -61,11 +62,24 @@
         
 
     </div>
+
+    <div id="viewChosenDeck" style="display: none;">
+        <img src="./Icons/redBook.png"> <!--width = 100-->
+        <span id="chosenDeck"></span> <!--name of chosend deck-->
+        <div id="questionsListPerDeck">
+            <!-- question list for chosen deck -->
+        </div>
+
+
+        <button class = "homeButton" onclick="homeFunc()">Home</button>
+        <br><br>
+        
+    </div>
     
 
     <div id="dungeon" style="display: none">
 
-        <br><br><br><br><br><br><br><br>
+        <br>
         <div id="dungeonQADiv">
             <div id="dungeonQuestion" style="display: none">
                 <span id="questionToAnswer"></span>
@@ -86,9 +100,10 @@
         <div id="winDiv" style="display: none">
             <h3>Congratulation! You have cleared the dungeon.</h3>
             <h4>(this doesn't mean you don't need further review)</h4>
+            <span>+20 coins</span>
+
         </div>
 
- 
 
         <br><br><br><br>
 
@@ -116,4 +131,4 @@
 
   <script src="dungeon.js"></script>
 </body>
-</html>
+</html> 
