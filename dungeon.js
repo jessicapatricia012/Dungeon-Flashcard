@@ -155,7 +155,7 @@ function displayRandomQuestion() {
         shownQuestions.push(randomIndex);
 
         // If all questions have been shown, reset shownQuestions to allow repeating questions
-        if (shownQuestions.length === deckArray[currentDeckIndex].questions.length) {
+        if (shownQuestions.length === deckArray[currentDeckIndex ].questions.length) {
             shownQuestions = [];
         }
 
