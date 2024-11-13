@@ -1,1 +1,2 @@
 # Dungeon-Scholar
+Dungeon Scholar was built from the ground up as a gamified study tool, focusing on both functionality and engagement. We started by developing a flashcard system where users can upload their own question sets, but we didn't stop there. We integrated game mechanics-health points, damage, and in-game currency-to simulate a dungeon battle. This involved designing a turn-based system where users lose health with incorrect answers and damage the monster with correct ones.
